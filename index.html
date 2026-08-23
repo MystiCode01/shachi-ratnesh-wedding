@@ -2,363 +2,249 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shachi & Ratnesh</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="theme-color" content="#0d0907">
+
+<title>Shachi & Ratnesh | Wedding Invitation</title>
 
 <style>
+
+/* ================================
+   BASIC RESET
+================================ */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html, body {
+html,
+body {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
-    background: #eee2d1;
-    font-family: Georgia, serif;
-    overflow-x: hidden;
+    background: #0b0806;
+    color: #f8ead0;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-/* Entire opening screen */
-.invitation {
-    min-height: 100vh;
-    min-height: 100svh;
+
+/* ================================
+   MAIN SCREEN
+================================ */
+
+.opening {
+
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 18px;
+
     background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 28%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,.6), transparent 30%),
-        linear-gradient(135deg, #ead9bd, #f8f0e5, #dfc7a2);
-    perspective: 1600px;
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(191,136,61,0.22),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(117,65,30,0.30),
+            transparent 45%
+        ),
+
+        #0b0806;
+
+    perspective: 1800px;
 }
 
-/* Envelope */
-.envelope-wrap {
-    width: min(650px, 94vw);
-    position: relative;
-    cursor: pointer;
-    perspective: 1400px;
-}
 
-.envelope {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1.55 / 1;
-    transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(.2,.75,.25,1);
-}
+/* ================================
+   GOLDEN AMBIENT LIGHT
+================================ */
 
-/* Back of envelope */
-.envelope-back {
+.glow {
+
     position: absolute;
-    inset: 0;
+
+    width: 90vw;
+    height: 70vh;
+
+    top: 5%;
+
     background:
-        linear-gradient(145deg, #f7efe2, #dfc49a);
-    border-radius: 5px;
-    box-shadow:
-        0 30px 60px rgba(67,48,27,.28),
-        inset 0 0 0 1px rgba(140,103,48,.3);
-    overflow: hidden;
-}
+        radial-gradient(
+            ellipse,
+            rgba(218,165,84,0.18),
+            transparent 65%
+        );
 
-/* Envelope diagonal folds */
-.envelope-back::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(32deg, transparent 49.7%, rgba(133,96,45,.28) 50%, transparent 50.3%),
-        linear-gradient(148deg, transparent 49.7%, rgba(133,96,45,.28) 50%, transparent 50.3%);
-}
+    filter: blur(40px);
 
-/* Envelope flap */
-.envelope-flap {
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 58%;
-    background: linear-gradient(145deg, #f5e8d5, #d8b982);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top center;
-    transform: rotateX(0deg);
-    transition:
-        transform 1.3s cubic-bezier(.2,.8,.2,1),
-        z-index .1s;
-    filter: drop-shadow(0 5px 5px rgba(70,45,20,.16));
-}
-
-/* Inner card */
-.wedding-card {
-    position: absolute;
-    z-index: 2;
-    left: 8%;
-    bottom: 7%;
-    width: 84%;
-    height: 86%;
-    border-radius: 4px;
-    background:
-        radial-gradient(circle at 50% 20%, #fffdf8, #f4e8d5);
-    box-shadow: 0 12px 30px rgba(50,35,20,.22);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transform: translateY(24%) translateZ(-20px);
-    opacity: 0;
-    transition:
-        transform 1.4s cubic-bezier(.2,.8,.2,1),
-        opacity .7s ease;
-    overflow: hidden;
-}
-
-.card-content {
-    padding: 25px;
-}
-
-.card-small {
-    font: 600 10px Arial, sans-serif;
-    letter-spacing: .25em;
-    color: #b08b50;
-    text-transform: uppercase;
-}
-
-.card-title {
-    margin: 18px 0 5px;
-    font-family: "Brush Script MT", "Segoe Script", cursive;
-    font-size: clamp(40px, 9vw, 75px);
-    color: #39463d;
-}
-
-.card-names {
-    font-size: clamp(17px, 4vw, 26px);
-    color: #5a5045;
-}
-
-.card-date {
-    margin-top: 18px;
-    font: 600 11px Arial, sans-serif;
-    letter-spacing: .18em;
-    color: #a68149;
-}
-
-/* Wax seal */
-.wax-seal {
-    position: absolute;
-    z-index: 10;
-    left: 50%;
-    top: 51%;
-    width: clamp(82px, 17vw, 125px);
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 35% 30%, #e5b0a5, #9d5049 55%, #713b38);
-    border: 5px solid #a9635c;
-    box-shadow:
-        0 8px 15px rgba(65,32,28,.3),
-        inset 0 3px 7px rgba(255,255,255,.25);
-    transition:
-        transform .7s ease,
-        opacity .4s ease;
-    overflow: hidden;
-}
-
-.wax-logo {
-    position: absolute;
-    inset: 12%;
-    border-radius: 50%;
-    background-image: url("15DBD045-1A0F-4558-8091-05272EE506EF.png");
-    background-size: 240%;
-    background-position: center;
-    mix-blend-mode: multiply;
-    opacity: .82;
-}
-
-.wax-seal::after {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 1px solid rgba(255,235,210,.55);
-    border-radius: 50%;
-}
-
-/* Click instruction */
-.tap-text {
-    position: absolute;
-    z-index: 20;
-    top: calc(100% + 28px);
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    color: #675640;
-    font: 600 11px Arial, sans-serif;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    animation: breathe 2s infinite;
-}
-
-.tap-heart {
-    display: block;
-    text-align: center;
-    font-size: 22px;
-    margin-top: 8px;
-    color: #a45f59;
-}
-
-/* Open state */
-.envelope-wrap.open .envelope {
-    transform: translateY(5px) rotateX(1deg);
-}
-
-.envelope-wrap.open .envelope-flap {
-    transform: rotateX(-178deg);
-    z-index: 1;
-}
-
-.envelope-wrap.open .wedding-card {
-    transform: translateY(-23%) translateZ(80px);
-    opacity: 1;
-}
-
-.envelope-wrap.open .wax-seal {
-    transform: translate(-50%, -50%) scale(.25) rotate(20deg);
-    opacity: 0;
-}
-
-.envelope-wrap.open .tap-text {
-    opacity: 0;
     pointer-events: none;
+
+    animation: glowMove 7s ease-in-out infinite;
 }
 
-/* After opening */
-.continue {
-    position: fixed;
-    left: 50%;
-    bottom: 25px;
-    transform: translateX(-50%) translateY(20px);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 30;
-    padding: 13px 25px;
-    border-radius: 30px;
-    border: 1px solid #b18b52;
-    background: rgba(255,250,241,.94);
-    color: #4a564c;
-    font: 600 10px Arial, sans-serif;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    transition: .8s ease;
-}
 
-.envelope-wrap.open ~ .continue {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-}
+@keyframes glowMove {
 
-@keyframes breathe {
+    0%,100% {
+        transform: scale(1);
+        opacity: .55;
+    }
+
     50% {
-        opacity: .45;
-        transform: translateX(-50%) translateY(4px);
+        transform: scale(1.12);
+        opacity: .85;
     }
 }
 
-@media (max-width: 600px) {
-    .invitation {
-        padding: 25px 12px;
+
+/* ================================
+   FLOATING GOLD PARTICLES
+================================ */
+
+.particles {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(255,220,153,.75) 0 1px,
+            transparent 2px
+        ),
+
+        radial-gradient(
+            circle,
+            rgba(255,232,185,.55) 0 1px,
+            transparent 2px
+        );
+
+    background-size:
+        190px 220px,
+        270px 310px;
+
+    background-position:
+        20px 30px,
+        90px 120px;
+
+    animation: particlesMove 15s linear infinite;
+
+    opacity: .55;
+}
+
+
+@keyframes particlesMove {
+
+    0% {
+        transform: translateY(0);
     }
 
-    .envelope-wrap {
-        width: 96vw;
+    50% {
+        transform: translateY(-20px);
     }
 
-    .card-content {
-        padding: 15px;
+    100% {
+        transform: translateY(0);
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-    }
+
+/* ================================
+   TOP LABEL
+================================ */
+
+.top-label {
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    white-space: nowrap;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: .38em;
+
+    text-transform: uppercase;
+
+    color: rgba(245,220,177,.75);
+
+    text-align: center;
 }
-</style>
-</head>
 
-<body>
 
-<main class="invitation">
+/* ================================
+   ENVELOPE CONTAINER
+================================ */
 
-    <div class="envelope-wrap" id="envelopeWrap">
+.envelope-container {
 
-        <div class="envelope">
+    position: relative;
 
-            <div class="envelope-back"></div>
+    width: min(94vw, 560px);
 
-            <div class="wedding-card">
-                <div class="card-content">
-                    <div class="card-small">
-                        With love & blessings
-                    </div>
+    height: min(92vh, 900px);
 
-                    <div class="card-title">
-                        Shachi & Ratnesh
-                    </div>
+    display: flex;
 
-                    <div class="card-names">
-                        are getting married
-                    </div>
+    align-items: center;
 
-                    <div class="card-date">
-                        24 · NOVEMBER · 2026
-                    </div>
-                </div>
-            </div>
+    justify-content: center;
 
-            <div class="envelope-flap"></div>
+    transform-style: preserve-3d;
 
-            <div class="wax-seal">
-                <div class="wax-logo"></div>
-            </div>
+    transition:
+        transform 2.3s cubic-bezier(.18,.82,.18,1),
+        opacity 1.8s ease;
+}
 
-        </div>
 
-        <div class="tap-text">
-            Tap to open our invitation
-            <span class="tap-heart">♡</span>
-        </div>
+/* ================================
+   ENVELOPE IMAGE
+================================ */
 
-    </div>
+.envelope-image {
 
-    <button class="continue" id="continueButton" type="button">
-        Continue to our story ↓
-    </button>
+    position: absolute;
 
-</main>
+    width: 100%;
 
-<script>
-const envelope = document.getElementById("envelopeWrap");
-const continueButton = document.getElementById("continueButton");
+    height: 100%;
 
-envelope.addEventListener("click", function () {
-    envelope.classList.add("open");
-});
+    object-fit: contain;
 
-continueButton.addEventListener("click", function () {
-    alert("Our beautiful wedding story will come next ❤️");
-});
-</script>
+    object-position: center;
 
-</body>
-</html>
+    user
