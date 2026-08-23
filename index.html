@@ -4,17 +4,20 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               viewport-fit=cover">
 
-<meta name="theme-color" content="#0d0907">
+<meta name="theme-color" content="#120c08">
 
 <title>Shachi & Ratnesh | Wedding Invitation</title>
 
 <style>
 
-/* ================================
-   BASIC RESET
-================================ */
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -25,27 +28,26 @@
 html,
 body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
 }
 
 body {
-    background: #0b0806;
-    color: #f8ead0;
+    overflow-x: hidden;
+    background: #100a07;
+    color: #f7ead0;
     font-family: Georgia, "Times New Roman", serif;
 }
 
 
-/* ================================
-   MAIN SCREEN
-================================ */
+/* =========================================================
+   MAIN CINEMATIC STAGE
+========================================================= */
 
-.opening {
+.stage {
 
     position: relative;
 
     width: 100vw;
-    height: 100vh;
     height: 100svh;
 
     min-height: 620px;
@@ -57,71 +59,38 @@ body {
     justify-content: center;
 
     background:
+
         radial-gradient(
-            circle at 50% 35%,
-            rgba(191,136,61,0.22),
-            transparent 30%
+            ellipse at 50% 42%,
+            rgba(172,118,48,.25) 0%,
+            rgba(70,38,19,.12) 30%,
+            transparent 65%
         ),
 
         radial-gradient(
-            circle at 50% 100%,
-            rgba(117,65,30,0.30),
-            transparent 45%
+            ellipse at 50% 100%,
+            rgba(94,45,20,.30),
+            transparent 55%
         ),
 
-        #0b0806;
+        linear-gradient(
+            145deg,
+            #0b0705,
+            #160d08 48%,
+            #0a0604
+        );
 
     perspective: 1800px;
 }
 
 
-/* ================================
-   GOLDEN AMBIENT LIGHT
-================================ */
+/* =========================================================
+   VIGNETTE
+========================================================= */
 
-.glow {
+.stage::after {
 
-    position: absolute;
-
-    width: 90vw;
-    height: 70vh;
-
-    top: 5%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(218,165,84,0.18),
-            transparent 65%
-        );
-
-    filter: blur(40px);
-
-    pointer-events: none;
-
-    animation: glowMove 7s ease-in-out infinite;
-}
-
-
-@keyframes glowMove {
-
-    0%,100% {
-        transform: scale(1);
-        opacity: .55;
-    }
-
-    50% {
-        transform: scale(1.12);
-        opacity: .85;
-    }
-}
-
-
-/* ================================
-   FLOATING GOLD PARTICLES
-================================ */
-
-.particles {
+    content: "";
 
     position: absolute;
 
@@ -129,42 +98,117 @@ body {
 
     pointer-events: none;
 
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            transparent 38%,
+            rgba(0,0,0,.40) 100%
+        );
+
+    z-index: 20;
+}
+
+
+/* =========================================================
+   GOLDEN LIGHT
+========================================================= */
+
+.light {
+
+    position: absolute;
+
+    width: 85vw;
+    height: 75vh;
+
+    left: 50%;
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(220,170,86,.18),
+            transparent 68%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        lightPulse 6s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes lightPulse {
+
+    0%,
+    100% {
+        opacity: .55;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    50% {
+        opacity: .9;
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   FLOATING DUST
+========================================================= */
+
+.dust {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    opacity: .45;
+
     background-image:
 
         radial-gradient(
             circle,
-            rgba(255,220,153,.75) 0 1px,
+            rgba(244,202,126,.8) 0 1px,
             transparent 2px
         ),
 
         radial-gradient(
             circle,
-            rgba(255,232,185,.55) 0 1px,
+            rgba(255,225,170,.5) 0 1px,
             transparent 2px
         );
 
     background-size:
-        190px 220px,
-        270px 310px;
+        180px 220px,
+        280px 320px;
 
-    background-position:
-        20px 30px,
-        90px 120px;
-
-    animation: particlesMove 15s linear infinite;
-
-    opacity: .55;
+    animation:
+        dustMove 16s linear infinite;
 }
 
 
-@keyframes particlesMove {
+@keyframes dustMove {
 
     0% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-18px);
     }
 
     100% {
@@ -173,49 +217,50 @@ body {
 }
 
 
-/* ================================
-   TOP LABEL
-================================ */
+/* =========================================================
+   TOP TEXT
+========================================================= */
 
-.top-label {
+.top-line {
 
     position: absolute;
 
-    top: 25px;
+    top: 27px;
 
     left: 50%;
 
     transform: translateX(-50%);
 
-    z-index: 10;
+    z-index: 30;
 
     white-space: nowrap;
 
-    font-family: Arial, sans-serif;
+    color: rgba(240,214,168,.72);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     font-size: 8px;
 
-    letter-spacing: .38em;
+    letter-spacing: .36em;
 
     text-transform: uppercase;
-
-    color: rgba(245,220,177,.75);
-
-    text-align: center;
 }
 
 
-/* ================================
-   ENVELOPE CONTAINER
-================================ */
+/* =========================================================
+   ENVELOPE SCENE
+========================================================= */
 
-.envelope-container {
+.envelope-scene {
 
     position: relative;
 
-    width: min(94vw, 560px);
+    width: min(92vw, 530px);
 
-    height: min(92vh, 900px);
+    height: min(88vh, 820px);
 
     display: flex;
 
@@ -225,26 +270,1195 @@ body {
 
     transform-style: preserve-3d;
 
+    z-index: 10;
+
     transition:
-        transform 2.3s cubic-bezier(.18,.82,.18,1),
+
+        transform 2.4s
+        cubic-bezier(.17,.85,.17,1),
+
         opacity 1.8s ease;
 }
 
 
-/* ================================
-   ENVELOPE IMAGE
-================================ */
+/* =========================================================
+   ENVELOPE
+========================================================= */
 
-.envelope-image {
+.envelope {
 
-    position: absolute;
+    position: relative;
 
     width: 100%;
 
-    height: 100%;
+    aspect-ratio: 9 / 12.5;
 
-    object-fit: contain;
+    max-height: 82vh;
 
-    object-position: center;
+    transform-style: preserve-3d;
 
-    user
+    filter:
+
+        drop-shadow(
+            0 35px 45px rgba(0,0,0,.65)
+        );
+
+    transition:
+
+        transform 2.2s
+        cubic-bezier(.18,.82,.18,1),
+
+        filter 2s ease;
+}
+
+
+/* =========================================================
+   ENVELOPE BODY
+========================================================= */
+
+.envelope-body {
+
+    position: absolute;
+
+    left: 5%;
+    right: 5%;
+
+    bottom: 9%;
+
+    height: 62%;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #f1dfbd,
+            #c59b5c 48%,
+            #e7cca0
+        );
+
+    box-shadow:
+
+        inset 0 0 0 1px
+        rgba(102,68,28,.5),
+
+        inset 0 0 45px
+        rgba(91,54,21,.16),
+
+        0 25px 45px
+        rgba(0,0,0,.48);
+
+    transform:
+        translateZ(0);
+}
+
+
+/* =========================================================
+   ENVELOPE INNER PAPER
+========================================================= */
+
+.envelope-body::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 2%;
+
+    border:
+
+        1px solid
+        rgba(255,243,210,.55);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   DIAGONAL FOLDS
+========================================================= */
+
+.fold-left,
+.fold-right {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 75%;
+
+    height: 70%;
+
+    pointer-events: none;
+}
+
+
+.fold-left {
+
+    left: -22%;
+
+    background:
+
+        linear-gradient(
+            140deg,
+            transparent 48%,
+            rgba(116,76,32,.30) 49%,
+            rgba(255,238,199,.20) 50%,
+            transparent 51%
+        );
+}
+
+
+.fold-right {
+
+    right: -22%;
+
+    background:
+
+        linear-gradient(
+            40deg,
+            transparent 48%,
+            rgba(116,76,32,.30) 49%,
+            rgba(255,238,199,.20) 50%,
+            transparent 51%
+        );
+}
+
+
+/* =========================================================
+   ENVELOPE FLAP
+========================================================= */
+
+.flap {
+
+    position: absolute;
+
+    left: 5%;
+
+    top: 9%;
+
+    width: 90%;
+
+    height: 48%;
+
+    z-index: 12;
+
+    transform-origin: top center;
+
+    transform-style: preserve-3d;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #f7e9cd,
+            #d2ad70 58%,
+            #edd4a4
+        );
+
+    filter:
+
+        drop-shadow(
+            0 8px 12px rgba(54,32,13,.30)
+        );
+
+    transition:
+
+        transform 2.1s
+        cubic-bezier(.18,.82,.18,1),
+
+        filter 1.8s ease;
+}
+
+
+/* =========================================================
+   FLAP INNER EDGE
+========================================================= */
+
+.flap::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 5%;
+
+    top: 8%;
+
+    width: 90%;
+
+    height: 84%;
+
+    border-top:
+        1px solid
+        rgba(255,248,224,.65);
+
+    opacity: .55;
+}
+
+
+/* =========================================================
+   GOLD DECORATIVE FRAME
+========================================================= */
+
+.frame {
+
+    position: absolute;
+
+    left: 12%;
+
+    right: 12%;
+
+    top: 17%;
+
+    bottom: 18%;
+
+    border:
+
+        1px solid
+        rgba(164,119,52,.65);
+
+    z-index: 8;
+
+    pointer-events: none;
+}
+
+
+.frame::before,
+.frame::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+
+    border:
+        1px solid
+        rgba(184,139,69,.8);
+}
+
+
+.frame::before {
+
+    top: -1px;
+    left: -1px;
+
+    border-right: none;
+    border-bottom: none;
+}
+
+
+.frame::after {
+
+    right: -1px;
+    bottom: -1px;
+
+    border-left: none;
+    border-top: none;
+}
+
+
+/* =========================================================
+   CARD INSIDE
+========================================================= */
+
+.card {
+
+    position: absolute;
+
+    left: 12%;
+
+    width: 76%;
+
+    height: 62%;
+
+    bottom: 13%;
+
+    z-index: 5;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #fffdf7,
+            #f3e8d2
+        );
+
+    border:
+
+        1px solid
+        rgba(177,134,63,.58);
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(0,0,0,.28),
+
+        inset 0 0 25px
+        rgba(177,134,63,.08);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transform:
+
+        translateY(22%)
+        translateZ(-80px)
+        scale(.94);
+
+    opacity: .05;
+
+    transition:
+
+        transform 1.8s
+        cubic-bezier(.17,.85,.17,1),
+
+        opacity 1.2s ease;
+}
+
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+
+        1px solid
+        rgba(178,134,62,.42);
+}
+
+
+.card-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    padding: 20px;
+}
+
+
+.card-small {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: .30em;
+
+    text-transform: uppercase;
+
+    color: #ad8243;
+}
+
+
+.card-monogram {
+
+    margin-top: 18px;
+
+    font-size: 45px;
+
+    color: #a67b3d;
+
+    line-height: 1;
+}
+
+
+.card-names {
+
+    margin-top: 8px;
+
+    font-size: clamp(25px, 7vw, 42px);
+
+    line-height: .9;
+
+    color: #374137;
+}
+
+
+.card-date {
+
+    margin-top: 17px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: .18em;
+
+    color: #9e743b;
+}
+
+
+/* =========================================================
+   WAX SEAL
+========================================================= */
+
+.wax {
+
+    position: absolute;
+
+    z-index: 25;
+
+    left: 50%;
+
+    top: 47%;
+
+    width: clamp(82px, 19vw, 112px);
+
+    aspect-ratio: 1;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle at 33% 27%,
+            #d58d7d,
+            #984c48 48%,
+            #65302e 100%
+        );
+
+    border:
+        5px solid
+        #9f5650;
+
+    box-shadow:
+
+        0 10px 22px
+        rgba(0,0,0,.42),
+
+        inset 0 3px 8px
+        rgba(255,226,210,.22),
+
+        inset 0 -5px 8px
+        rgba(50,15,13,.25);
+
+    transition:
+
+        transform 1.2s
+        cubic-bezier(.2,.9,.2,1),
+
+        opacity .8s ease;
+}
+
+
+/* =========================================================
+   WAX INNER RING
+========================================================= */
+
+.wax::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border:
+        1px solid
+        rgba(255,226,210,.48);
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   RS MONOGRAM
+========================================================= */
+
+.monogram {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #f5d8c7;
+
+    font-size: clamp(28px, 8vw, 45px);
+
+    font-weight: 500;
+
+    letter-spacing: -.12em;
+
+    text-shadow:
+
+        0 2px 3px
+        rgba(60,20,18,.5);
+}
+
+
+/* =========================================================
+   SHINE ON ENVELOPE
+========================================================= */
+
+.sheen {
+
+    position: absolute;
+
+    z-index: 27;
+
+    left: 12%;
+
+    top: 20%;
+
+    width: 76%;
+
+    height: 16%;
+
+    transform:
+        translateX(-130%)
+        rotate(-12deg);
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            105deg,
+            transparent 15%,
+            rgba(255,240,199,.05) 35%,
+            rgba(255,240,199,.55) 50%,
+            rgba(255,240,199,.05) 65%,
+            transparent 85%
+        );
+
+    filter: blur(8px);
+
+    animation:
+        sheenMove 6.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes sheenMove {
+
+    0%,
+    20% {
+
+        transform:
+            translateX(-130%)
+            rotate(-12deg);
+
+        opacity: 0;
+    }
+
+    35% {
+
+        opacity: .55;
+    }
+
+    55% {
+
+        transform:
+            translateX(130%)
+            rotate(-12deg);
+
+        opacity: .8;
+    }
+
+    70%,
+    100% {
+
+        transform:
+            translateX(130%)
+            rotate(-12deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   TAP AREA
+========================================================= */
+
+.tap {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 40;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+/* =========================================================
+   TAP MESSAGE
+========================================================= */
+
+.tap-message {
+
+    position: absolute;
+
+    z-index: 45;
+
+    left: 50%;
+
+    bottom: 5%;
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    transition:
+
+        opacity .8s ease,
+
+        transform .8s ease;
+}
+
+
+.tap-message span {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: .38em;
+
+    color: #e8c88d;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 3px 15px #000;
+}
+
+
+.tap-heart {
+
+    margin-top: 8px;
+
+    font-size: 25px;
+
+    color: #e7b96e;
+
+    animation:
+        heartPulse 2.2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: .75;
+    }
+
+    50% {
+        transform: scale(1.16);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   OPENING STATE
+========================================================= */
+
+.stage.opening
+.envelope-scene {
+
+    transform:
+        translateY(-3%)
+        rotateX(5deg)
+        rotateY(-3deg)
+        scale(1.035);
+}
+
+
+.stage.opening
+.flap {
+
+    transform:
+        rotateX(-165deg);
+
+    filter:
+        drop-shadow(
+            0 15px 22px
+            rgba(0,0,0,.45)
+        );
+
+    z-index: 4;
+}
+
+
+.stage.opening
+.card {
+
+    transform:
+        translateY(-23%)
+        translateZ(90px)
+        scale(1);
+
+    opacity: 1;
+
+    transition-delay: .45s;
+}
+
+
+.stage.opening
+.wax {
+
+    transform:
+        translate(-50%, -50%)
+        scale(.25)
+        rotate(22deg);
+
+    opacity: 0;
+}
+
+
+.stage.opening
+.tap-message {
+
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        translateY(15px);
+}
+
+
+/* =========================================================
+   FINAL CARD STATE
+========================================================= */
+
+.stage.card-visible
+.envelope-scene {
+
+    opacity: 0;
+
+    transform:
+        scale(1.12)
+        translateY(-5%);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   NEXT MESSAGE
+========================================================= */
+
+.next {
+
+    position: absolute;
+
+    z-index: 60;
+
+    left: 50%;
+
+    bottom: 28px;
+
+    transform:
+        translateX(-50%);
+
+    color: #c99d57;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: .28em;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 1s ease;
+}
+
+
+.stage.card-visible
+.next {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    animation:
+        nextFloat 2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes nextFloat {
+
+    50% {
+
+        transform:
+            translateX(-50%)
+            translateY(6px);
+    }
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 700px) {
+
+    .envelope-scene {
+
+        width: 460px;
+
+        height: 90vh;
+    }
+
+    .envelope {
+
+        max-height: 850px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .envelope-scene {
+
+        width: 97vw;
+
+        height: 92vh;
+    }
+
+    .top-line {
+
+        top: 22px;
+
+        font-size: 7px;
+
+        letter-spacing: .26em;
+    }
+
+    .tap-message span {
+
+        font-size: 7px;
+
+        letter-spacing: .30em;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<main
+    class="stage"
+    id="stage">
+
+
+    <!-- GOLDEN AMBIENT LIGHT -->
+
+    <div class="light"></div>
+
+
+    <!-- FLOATING DUST -->
+
+    <div class="dust"></div>
+
+
+    <!-- TOP LABEL -->
+
+    <div class="top-line">
+
+        A Wedding Invitation ·
+        Shachi & Ratnesh
+
+    </div>
+
+
+    <!-- =====================================================
+         ENVELOPE
+    ====================================================== -->
+
+    <div
+        class="envelope-scene"
+        id="envelopeScene">
+
+
+        <div class="envelope">
+
+
+            <!-- CARD INSIDE -->
+
+            <div class="card">
+
+                <div class="card-content">
+
+                    <div class="card-small">
+
+                        With love & blessings
+
+                    </div>
+
+
+                    <div class="card-monogram">
+
+                        RS
+
+                    </div>
+
+
+                    <div class="card-names">
+
+                        Shachi
+
+                        <br>
+
+                        &
+
+                        <br>
+
+                        Ratnesh
+
+                    </div>
+
+
+                    <div class="card-date">
+
+                        24 · NOVEMBER · 2026
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ENVELOPE BODY -->
+
+            <div class="envelope-body">
+
+                <div class="fold-left"></div>
+
+                <div class="fold-right"></div>
+
+            </div>
+
+
+            <!-- DECORATIVE FRAME -->
+
+            <div class="frame"></div>
+
+
+            <!-- FLAP -->
+
+            <div class="flap"></div>
+
+
+            <!-- WAX SEAL -->
+
+            <div class="wax">
+
+                <div class="monogram">
+
+                    RS
+
+                </div>
+
+            </div>
+
+
+            <!-- LIGHT SHINE -->
+
+            <div class="sheen"></div>
+
+
+            <!-- CLICK AREA -->
+
+            <div
+                class="tap"
+                id="tap">
+
+            </div>
+
+
+            <!-- TAP TEXT -->
+
+            <div class="tap-message">
+
+                <span>
+
+                    Tap to open
+
+                </span>
+
+
+                <div class="tap-heart">
+
+                    ♡
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- NEXT -->
+
+    <div
+        class="next"
+        id="next">
+
+        Scroll to enter our story ↓
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   ENVELOPE INTERACTION
+========================================================= */
+
+const stage =
+    document.getElementById("stage");
+
+const tap =
+    document.getElementById("tap");
+
+let opened = false;
+
+
+tap.addEventListener(
+    "click",
+    function () {
+
+        if (opened) {
+            return;
+        }
+
+        opened = true;
+
+
+        /*
+         * Start slow cinematic opening.
+         */
+
+        stage.classList.add(
+            "opening"
+        );
+
+
+        /*
+         * After the envelope has opened,
+         * bring the card fully forward.
+         */
+
+        setTimeout(
+            function () {
+
+                stage.classList.add(
+                    "card-visible"
+                );
+
+            },
+            2600
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
